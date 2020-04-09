@@ -1,0 +1,51 @@
+import pygame
+import math
+import os
+pygame.init()
+
+pygame.mixer.init()
+
+
+HEIGTH_display = 600
+WIDTH_display = 1280
+
+def load_images(path):
+    images = []
+    images_grande = []
+    for file_name in os.listdir(path="data/courtmariocourt"):
+        image = pygame.image.load(path + os.sep + file_name).convert()
+        image_petit = pygame.transform.scale(image, (50,60))
+        image_grande = pygame.transform.scale(image, (50,80))
+        images_grande.append(image_grande)
+        images.append(image_petit)
+    return images
+
+
+win = pygame.display.set_mode((WIDTH_display,HEIGTH_display))
+pygame.display.set_caption("Basket")
+
+baballe = pygame.image.load("data/balls/baballe.png").convert_alpha()
+baballe = pygame.transform.scale(baballe,(30,30))
+fond =  pygame.image.load("data/fond.png").convert()
+fond = pygame.transform.scale(fond,(1280,600))
+win.blit(fond,(0,0))
+
+balles_prites = pygame.sprite.Group()
+
+run = True
+
+class balle (pygame.sprite.Sprite):
+
+    def ___init___(self , x , y):
+        pygame.sprite.Sprite.__init__(self,balles_sprites)
+        self.image = baballe
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+baballe = balle 
+while run:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+    win.blit(baballe,(400,100))
+    pygame.display.update()
