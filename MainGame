@@ -10,9 +10,9 @@ HEIGTH_display = 600
 WIDTH_display = 1280
 gravi = (math.pi , 0.002)
 choc = 0.8
+tir = (None,None)
 
 def load_images(path):
-    """bijour"""
     images = []
     images_grande = []
     for file_name in os.listdir(path="data/courtmariocourt"):
@@ -31,6 +31,13 @@ def CombiVect (tup1,tup2):
     long  = math.hypot(x, y)
 
     return (angle, long)
+  
+def tir_click():
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            tir = event.pos
+            return tir
+    return (None,None)
 
 win = pygame.display.set_mode((WIDTH_display,HEIGTH_display))
 pygame.display.set_caption("Basket")
@@ -62,15 +69,9 @@ class balle (pygame.sprite.Sprite):
     def display(self):
         win.blit(self.image,(self.x,self.y))
     
-    def tir(self):
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                tir1 = event.pos[0]
-                tir2 = event.pos[1]
-                self.tiree = True
 
 
-    def mvmt(self, self.x, self.y):
+    def mvmt(self):
         if self.tiree:
             vit = (self.angle, self.vitesse)
             (self.angle, self.vitesse) = CombiVect(vit,gravi)
