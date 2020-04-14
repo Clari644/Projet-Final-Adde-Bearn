@@ -1,6 +1,7 @@
 import pygame
 import math
 import os
+
 pygame.init()
 
 pygame.mixer.init()
@@ -46,6 +47,7 @@ baballe = pygame.image.load("data/balls/baballe.png").convert_alpha()
 baballe = pygame.transform.scale(baballe,(30,30))
 fond =  pygame.image.load("data/fond.png").convert()
 fond = pygame.transform.scale(fond,(1280,600))
+
 win.blit(fond,(0,0))
 
 balles_sprites = pygame.sprite.Group()
@@ -63,14 +65,12 @@ class balle (pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.vitesse = 1
-        self.angle = 10
+        self.angle = 2
         self.tiree = True
 
     def display(self):
         win.blit(self.image,(self.x,self.y))
     
-
-
     def mvmt(self):
         if self.tiree:
             vit = (self.angle, self.vitesse)
@@ -98,6 +98,7 @@ class balle (pygame.sprite.Sprite):
 basket = balle(200,250,baballe,1) 
 
 while run:
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
