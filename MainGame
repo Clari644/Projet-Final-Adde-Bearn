@@ -69,7 +69,7 @@ class balle (pygame.sprite.Sprite):
     def display(self):
         win.blit(self.image,(self.x,self.y))
     
-#
+
 
     def mvmt(self):
         if self.tiree:
