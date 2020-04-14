@@ -12,6 +12,7 @@ gravi = (math.pi , 0.002)
 choc = 0.8
 
 def load_images(path):
+    """bijour"""
     images = []
     images_grande = []
     for file_name in os.listdir(path="data/courtmariocourt"):
@@ -55,16 +56,26 @@ class balle (pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.vitesse = 1
-        self.angle = 100
+        self.angle = 10
+        self.tiree = True
 
     def display(self):
         win.blit(self.image,(self.x,self.y))
+    
+    def tir(self):
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                tir1 = event.pos[0]
+                tir2 = event.pos[1]
+                self.tiree = True
 
-    def mvmt(self):
-        vit = (self.angle, self.vitesse)
-        (self.angle, self.vitesse) = CombiVect(vit,gravi)
-        self.x += math.sin(self.angle) * self.vitesse
-        self.y -= math.cos(self.angle) * self.vitesse
+
+    def mvmt(self, self.x, self.y):
+        if self.tiree:
+            vit = (self.angle, self.vitesse)
+            (self.angle, self.vitesse) = CombiVect(vit,gravi)
+            self.x += math.sin(self.angle) * self.vitesse
+            self.y -= math.cos(self.angle) * self.vitesse
         #self.vitesse *= frott
 
     def rebond(self):
@@ -89,6 +100,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        
     win.blit(fond,(0,0))
     basket.mvmt()
     basket.rebond()
