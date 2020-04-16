@@ -1,6 +1,7 @@
 import pygame
 import math
 import os
+import time
 
 pygame.init()
 
@@ -47,12 +48,17 @@ baballe = pygame.image.load("data/balls/baballe.png").convert_alpha()
 baballe = pygame.transform.scale(baballe,(30,30))
 fond =  pygame.image.load("data/fond.png").convert()
 fond = pygame.transform.scale(fond,(1280,600))
+time_img = pygame.image.load("data/time.png").convert_alpha()
+time_img = pygame.transform.scale(time_img,(30,30))
 
 win.blit(fond,(0,0))
 
 balles_sprites = pygame.sprite.Group()
 
+myfont = pygame.font.SysFont("monospace",30)
+
 run = True
+
 
 class balle (pygame.sprite.Sprite):
 
@@ -64,7 +70,7 @@ class balle (pygame.sprite.Sprite):
         self.larg = self.rect[3]
         self.x = x
         self.y = y
-        self.vitesse = 1
+        self.vitesse = 2
         self.angle = 2
         self.tiree = True
 
@@ -95,7 +101,30 @@ class balle (pygame.sprite.Sprite):
             self.angle = math.pi - self.angle
             self.vitesse *= choc   
 
+class timer():
+
+    def __init__(self):
+        self.debut_timer = time.time()
+        self.temps = 40
+        self.maxtime = int(self.debut_timer) + self.temps
+        self.new_time = 0
+        self.temps_restant = 0
+    def timer(self):
+        self.new_time = int(time.time())
+        self.temps_restant = self.maxtime - self.new_time
+        if self.temps_restant == 0:
+            print("GAMEOVER Temps ecoulé")
+            return False
+        else:
+            return True
+        print(self.temps_restant)
+    def affichage(self):
+        temps = myfont.render(str(self.temps_restant),3,(255,0,0))
+        win.blit(temps,(1240,5))
+        win.blit(time_img,(1200,5))
+
 basket = balle(200,250,baballe,1) 
+timy = timer()
 
 while run:
 
@@ -107,5 +136,7 @@ while run:
     basket.mvmt()
     basket.rebond()
     basket.display()
+    run = timy.timer()
+    timy.affichage()
     pygame.display.update()
     #print(basket.y)
