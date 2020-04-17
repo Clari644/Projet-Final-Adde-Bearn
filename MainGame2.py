@@ -153,3 +153,13 @@ while run:
     timy.affichage()
     pygame.display.update()
     #print(basket.y)
+    
+
+def scores(score,panier):
+    True = panier
+    if panier:
+        score = score+1 
+    else:
+        False
+        score = score
+    return score
