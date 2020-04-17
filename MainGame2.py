@@ -39,6 +39,24 @@ fond =  pygame.image.load("data/fond.png").convert()
 fond = pygame.transform.scale(fond,(1280,600))
 time_img = pygame.image.load("data/time.png").convert_alpha()
 time_img = pygame.transform.scale(time_img,(30,30))
+ananas = pygame.image.load("data/balls/ananas.png").convert_alpha()
+banane = pygame.image.load("data/balls/banane.png").convert_alpha() 
+orange = pygame.image.load("data/balls/orange.png").convert_alpha()
+peche = pygame.image.load("data/balls/peche.png").convert_alpha()
+poire = pygame.image.load("data/balls/poire.png").convert_alpha()
+pomme = pygame.image.load("data/balls/pomme.png").convert_alpha()
+prune = pygame.image.load("data/balls/prune.png").convert_alpha()
+raisin = pygame.image.load("data/balls/raisin.png").convert_alpha()
+ananas = pygame.transform.scale(ananas,(30,40))
+banane  = pygame.transform.scale(banane,(30,30))
+orange = pygame.transform.scale(orange,(25,25))
+peche = pygame.transform.scale(peche,(25,25))
+poire = pygame.transform.scale(poire,(20,25))
+pomme = pygame.transform.scale(pomme,(25,25))
+prune = pygame.transform.scale(prune,(15,15))
+raisin = pygame.transform.scale(raisin,(25,30))
+
+fruits = [orange,raisin,banane]
 
 win.blit(fond,(0,0))
 
@@ -114,6 +132,7 @@ class timer():
         win.blit(time_img,(1200,5))
 
 basket = balle(200,250,baballe) 
+raisin = balle(300,100,fruits[1])
 timy = timer()
 
 while run:
@@ -127,6 +146,9 @@ while run:
     basket.mvmt()
     basket.rebond()
     basket.display()
+    raisin.mvmt()
+    raisin.rebond()
+    raisin.display()
     run = timy.timer()
     timy.affichage()
     pygame.display.update()
