@@ -156,6 +156,7 @@ while run:
     
 
 def scores(score,panier):
+    score=0
     True = panier
     if panier:
         score = score+1 
