@@ -181,3 +181,4 @@ def scores(score,panier):
             False
             score = score
     return score
+#nmbvqei
