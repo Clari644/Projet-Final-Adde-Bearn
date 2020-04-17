@@ -154,13 +154,30 @@ while run:
     pygame.display.update()
     #print(basket.y)
     
-
+#
 def scores(score,panier):
     score=0
-    True = panier
-    if panier:
-        score = score+1 
-    else:
-        False
-        score = score
+    if dist_fruit_panier < tol:
+        dist_fruit_panier = True
+        
+    for dist_fruit_panier in range (tol):
+        if citron:
+            score = score+3
+        elif framboise:
+            score = score+4
+        elif melon:
+            score = score+9
+        elif ananas:
+            score = score+7
+        elif banane:
+            score = score+4
+        elif pomme:
+            score = score+5
+        elif fraise:
+            score = score+8  
+        elif kiwi:
+            score = score+6   
+        else:
+            False
+            score = score
     return score
